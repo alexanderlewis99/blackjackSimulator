@@ -3,7 +3,7 @@ ReadMe
 This program is designed to simulate games of blackjack (also known as twenty-one) against a single dealer from a standard deck of 52 cards.
 
 I) How to run
-0.	This program runs on Python 3.6.1. If you have not installed this version, install it from here: 
+        0.	This program runs on Python 3.6.1. If you have not installed this version, install it from here: 
 https://www.python.org/downloads/
 	1.	Place the program folder blackjackSimulator on your desktop 
 	2.	Open Terminal or other Unix platform. 
