@@ -4,16 +4,14 @@ from hand import Hand
 #creates a deck of card as a list from 1 to 52
 #called by: main()
 def buildDeck():
-	newDeck = []
-	for i in range(1, 13+1):
-		newDeck.append([i, "Clubs"])
-	for i in range(1, 13+1):
-		newDeck.append([i, "Diamonds"])
-	for i in range(1, 13+1):
-		newDeck.append([i, "Spades"])
-	for i in range(1, 13+1):
-		newDeck.append([i, "Hearts"])
-	return newDeck
+    newDeck = []
+    for suit in ["Clubs","Diamonds","Spades","Hearts"]:
+        newDeck.append(["Ace", suit, 11])
+        for numbered in range(1, 10+1):
+            newDeck.append([numbered, suit, numbered])
+        for royal in ["Jack", "Queen", "King"]:
+            newDeck.append([royal, suit, 10])
+    return newDeck
 
 #called by drawCard()
 #retrieves a random card from the deck and returns it
@@ -28,10 +26,10 @@ def getRandCard(deck):
 def playerMove(pHand, deck):
 	#total updated earlier
 	if pHand.total < 21:
-		pChoice = input("Enter ‘Y’ for another card or ‘H’ to hold: ")
+		pChoice = input("Enter 'Y' for another card or 'H' to hold: ")
 		if pChoice == 'Y' or pChoice == 'y' or pChoice == 'yes' or pChoice == 'Yes':
 			deck = pHand.drawCard(deck)
-			pHand.seePHand() #updates total
+			pHand.seeHand("Your") #updates total
 			if pHand.total > 21:
 				return 'gameOver'
 			else:
@@ -39,7 +37,7 @@ def playerMove(pHand, deck):
 		else: #pChoice == 'H' or pChoice == 'h' or pChoice == 'hold' or pChoice == 'Hold':
 			return 'dealerTurn'
 	else:
-		pChoice = input("You have 21. Enter ‘H’ to hold: ")
+		pChoice = input("You have 21. Enter 'H' to hold: ")
 		return 'dealerTurn'
 
 #the dealer takes cards until they go over 16 points 
@@ -62,8 +60,8 @@ def assessHands(pHand, dHand, bet):
 	print()
 	#shows the cards
 	print("The Reveal:")
-	pHand.seePHand() #updates total
-	dHand.seeDHand() #updates total
+	pHand.seeHand("Your") #updates total
+	dHand.seeHand("Dealer's") #updates total
 	#tests who wins
 	if pHand.total > dHand.total and pHand.total <= 21 or dHand.total > 21:
 		print("Player wins! Congrats!")
@@ -107,7 +105,7 @@ def main():
 		pHand = Hand(deck)
 		dHand = Hand(deck)
 		print("----------------------------------- Round", gameNum, "------------------------------------")
-		pHand.seePHand()
+		pHand.seeHand("Your")
 		dHand.seeDCard()
 		print()
 		
@@ -147,7 +145,7 @@ def main():
 		print()
 		print("Would you like to play again?")
 		playAgain = input("Enter 'Y' for yes, 'N' for no: ")
-		if not(playAgain == 'Y' or playAgain == 'y' or playAgain == 'yes' or playAgain == 'Yes'):
+		if not(playAgain in 'Yy' or playAgain == 'yes' or playAgain == 'Yes'):
 			gameRunning = False
 		else:
 			gameNum += 1
