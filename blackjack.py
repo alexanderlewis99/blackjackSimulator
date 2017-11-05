@@ -73,11 +73,6 @@ def assessHands(pHand, dHand, bet):
 		print("House wins! Better luck next time")
 		return -1*bet
 
-#runs the game: determines whose turn is it and if the player busts
-#starts off with the player and then the computer goes and then they're hands are compared
-#calls: playerMove(), dealerMove(), assessHands()
-#called by: main()
-
 #introduction banner
 #called by: main()
 def startBanner():
