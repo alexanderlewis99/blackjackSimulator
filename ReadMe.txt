@@ -1,5 +1,7 @@
 ReadMe
 
+Copyright 2017 A.L.E. Wang
+
 This program is designed to simulate games of blackjack (also known as twenty-one) against a single dealer from a standard deck of 52 cards.
 
 I) How to run
